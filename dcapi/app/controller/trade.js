@@ -16,7 +16,7 @@ class TradeController extends Controller {
   async create() {
     const ctx = this.ctx;
     const body = ctx.request.body;
-    body.user_id = +ctx.params.user_id;
+    // body.user_id = +ctx.params.user_id;
     const created = await ctx.service.trade.create(ctx.request.body);
     ctx.status = 201;
     ctx.body = created;
