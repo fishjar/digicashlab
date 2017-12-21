@@ -3,11 +3,11 @@
 const Service = require('egg').Service;
 
 class Trade extends Service {
-  async list({ offset = 0, limit = 10, order_by = 'tradeID', order = 'ASC' }) {
+  async list({ offset = 0, limit = 10, order_by = 'trade_id', order = 'ASC' }) {
     const options = {
       offset,
       limit,
-      attributes: [ 'id', 'site', 'pairs', 'tradeID', 'date', 'timestamp', 'type', 'rate', 'amount', 'total', 'created_at' ],
+      attributes: [ 'id', 'site', 'pairs', 'trade_id', 'date', 'timestamp', 'type', 'rate', 'amount', 'total', 'created_at' ],
       order: [[ order_by, order.toUpperCase() ]],
     };
     return this.ctx.model.Trade.findAndCountAll(options);

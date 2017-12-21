@@ -13,7 +13,7 @@ module.exports = {
       },
       site: STRING(20),
       pairs: STRING(15),
-      tradeID: STRING(20),
+      trade_id: STRING(20),
       date: STRING(25),
       timestamp: DATE(6),
       type: STRING(15),

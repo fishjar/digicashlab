@@ -6,5 +6,5 @@ exports.sequelize = {
   host: 'dcdb',
   port: '3306',
   username: 'digicash',
-  password: 'digicash9012',
+  password: 'digicash',
 };

@@ -22,9 +22,9 @@ services:
       - ./db_data:/var/lib/mysql
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: 'digicash9012'
+      MYSQL_ROOT_PASSWORD: 'digicash'
       MYSQL_DATABASE: 'digicash'
       MYSQL_USER: 'digicash'
-      MYSQL_PASSWORD: 'digicash9012'
+      MYSQL_PASSWORD: 'digicash'
     ports:
       - "9012:3306"

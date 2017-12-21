@@ -15,7 +15,7 @@ module.exports = appInfo => {
     host: 'localhost',
     port: '9012',
     username: 'digicash',
-    password: 'digicash9012',
+    password: 'digicash',
   };
 
   config.security = {

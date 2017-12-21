@@ -12,7 +12,7 @@ module.exports = {
     const last_trades = await ctx.service.trade.list();
     console.log('last_trades', last_trades);
     let last_tid;
-    last_trades.length > 0 && (last_tid = last_trades[0]['tradeID']);
+    last_trades.length > 0 && (last_tid = last_trades[0]['trade_id']);
 
     if (last_tid) {
       API_PATH = `${API_PATH}/${last_tid}`;
@@ -24,7 +24,18 @@ module.exports = {
     console.log('res', res);
 
     if (res.result === 'true') {
-      const trades = res.data.map(item => Object.assign(item, { site, pairs }));
+      const trades = res.data.map(item => {
+        const trade = {
+          trade_id: item.tradeID,
+          date: item.date,
+          timestamp: +item.timestamp,
+          type: item.type,
+          rate: item.rate,
+          amount: item.amount,
+          total: item.total
+        }
+        return Object.assign(trade, { site, pairs })
+      });
       await ctx.service.trade.bulkCreate(trades);
     }
   },
