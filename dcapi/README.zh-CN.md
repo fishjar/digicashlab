@@ -37,3 +37,24 @@ $ npm stop
 
 
 [egg]: https://eggjs.org
+
+
+
+### 本地开发
+```bash
+$ npm install
+$ createdb example-dev --owner postgres
+$ npm run migrate:up
+$ npm run dev
+$ open http://localhost:7001/users
+```
+
+### 部署
+
+线上正式环境用 `EGG_SERVER_ENV=prod` 来启动。
+
+```bash
+$ createdb example-prod --owner postgres
+$ NODE_ENV=production npm run migrate:up
+$ EGG_SERVER_ENV=prod npm start
+```

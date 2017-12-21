@@ -7,24 +7,25 @@ module.exports = {
     const pairs = 'btc_usdt';
     const site = 'gate.io';
     const API_HOST = 'http://data.gate.io/api2/1';
-    const API_PATH = `/trade/${pairs}`;
+    let API_PATH = `/tradeHistory/${pairs}`;
 
-    const last_trades = await ctx.service.trade.list();
-    console.log('last_trades', last_trades);
+    let last_trades = await ctx.service.trade.list();
+    last_trades = JSON.parse(JSON.stringify(last_trades));
     let last_tid;
-    last_trades.length > 0 && (last_tid = last_trades[0]['trade_id']);
-
+    last_trades.rows.length > 0 && (last_tid = last_trades.rows[0]['trade_id']);
+    console.log('last_tid', last_tid);
     if (last_tid) {
       API_PATH = `${API_PATH}/${last_tid}`;
     }
 
-    const res = await ctx.curl(`${API_HOST}${API_PATH}`, {
+    const res = await ctx.curl(`${API_HOST}${API_PATH}`,{
       dataType: 'json',
     });
-    console.log('res', res);
+    // console.log('res', res);
+    console.log('get trades: ',res.data.data.length);
 
-    if (res.result === 'true') {
-      const trades = res.data.map(item => {
+    if (res.data.result === 'true') {
+      const trades = res.data.data.map(item => {
         const trade = {
           trade_id: item.tradeID,
           date: item.date,
@@ -36,7 +37,8 @@ module.exports = {
         }
         return Object.assign(trade, { site, pairs })
       });
-      await ctx.service.trade.bulkCreate(trades);
+      const createRes = await ctx.service.trade.bulkCreate(trades);
+      console.log('saved!!!');
     }
   },
 };

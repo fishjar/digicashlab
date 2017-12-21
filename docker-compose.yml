@@ -9,22 +9,26 @@ services:
       - ./dcapi:/usr/src/app
       # - ./logs:/usr/src/app/logs
     depends_on:
-      - dcdb
+      - db
     command: "npm run docker"
     # stdin_open: true
     # tty: true
 
 
-  dcdb:
+  db:
     container_name: dcdb
     image: mysql:latest
     volumes:
       - ./db_data:/var/lib/mysql
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: 'digicash'
+      # MYSQL_ROOT_PASSWORD: 'digicash'
+      # MYSQL_DATABASE: 'digicash'
+      # MYSQL_USER: 'digicash'
+      # MYSQL_PASSWORD: 'digicash'
+      MYSQL_ROOT_PASSWORD: 'pass'
       MYSQL_DATABASE: 'digicash'
-      MYSQL_USER: 'digicash'
-      MYSQL_PASSWORD: 'digicash'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'pass'
     ports:
       - "9012:3306"

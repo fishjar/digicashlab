@@ -3,8 +3,8 @@
 exports.sequelize = {
   dialect: 'mysql',
   database: 'digicash',
-  host: 'dcdb',
+  host: 'db',
   port: '3306',
-  username: 'digicash',
-  password: 'digicash',
+  username: 'user',
+  password: 'pass',
 };

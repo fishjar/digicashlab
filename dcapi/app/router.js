@@ -8,5 +8,5 @@ module.exports = app => {
   router.get('/trades', controller.trade.trades);
   router.get('/trades/:id', controller.trade.trade);
   router.post('/trades', controller.trade.create);
-  del('/trades/:id', controller.trade.del);
+  router.del('/trades/:id', controller.trade.del);
 };

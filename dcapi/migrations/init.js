@@ -21,6 +21,7 @@ module.exports = {
       amount: FLOAT,
       total: FLOAT,
       created_at: DATE,
+      updated_at: DATE
     });
   }),
 

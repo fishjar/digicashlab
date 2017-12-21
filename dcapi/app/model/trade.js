@@ -19,6 +19,7 @@ module.exports = app => {
     amount: FLOAT,
     total: FLOAT,
     created_at: DATE,
+    updated_at: DATE
   });
 
   return Trade;
