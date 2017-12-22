@@ -7,7 +7,7 @@ class Trade extends Service {
     const options = {
       offset,
       limit,
-      attributes: [ 'id', 'site', 'pairs', 'trade_id', 'date', 'timestamp', 'type', 'rate', 'amount', 'total', 'created_at', 'updated_at' ],
+      attributes: [ 'id', 'site', 'pair', 'trade_id', 'date', 'timestamp', 'type', 'rate', 'amount', 'total', 'created_at', 'updated_at' ],
       order: [[ order_by, order.toUpperCase() ]],
     };
     return this.ctx.model.Trade.findAndCountAll(options);

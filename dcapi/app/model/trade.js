@@ -10,7 +10,7 @@ module.exports = app => {
       autoIncrement: true,
     },
     site: STRING(20),
-    pairs: STRING(15),
+    pair: STRING(15),
     trade_id: STRING(20),
     date: STRING(25),
     timestamp: DATE(6),
