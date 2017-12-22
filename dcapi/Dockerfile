@@ -6,7 +6,8 @@ WORKDIR /usr/src/app
 
 COPY . /usr/src/app
 
-RUN npm install --registry=https://registry.npm.taobao.org
+# RUN npm install --production --registry=https://registry.npm.taobao.org
+RUN npm install --production
 
 EXPOSE 7001
 
