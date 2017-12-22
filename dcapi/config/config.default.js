@@ -15,7 +15,7 @@ module.exports = appInfo => {
     host: 'localhost',
     port: '9012',
     username: 'user',
-    password: 'pass',
+    password: 'pass'
   };
 
   config.security = {

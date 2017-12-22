@@ -6,5 +6,5 @@ exports.sequelize = {
   host: 'db',
   port: '3306',
   username: 'user',
-  password: 'pass',
+  password: 'pass'
 };

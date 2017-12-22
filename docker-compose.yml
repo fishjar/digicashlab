@@ -5,15 +5,12 @@ services:
     build: ./dcapi
     ports:
       - "9011:7001"
-    volumes:
-      - ./dcapi:/usr/src/app
+    # volumes:
+      # - ./dcapi:/usr/src/app
       # - ./logs:/usr/src/app/logs
     depends_on:
       - db
-    command: "npm run docker"
-    # stdin_open: true
-    # tty: true
-
+    command: bash -c "sleep 30 && NODE_ENV=production npm run migrate:up && EGG_SERVER_ENV=prod npm run docker"
 
   db:
     container_name: dcdb
@@ -22,10 +19,6 @@ services:
       - ./db_data:/var/lib/mysql
     restart: always
     environment:
-      # MYSQL_ROOT_PASSWORD: 'digicash'
-      # MYSQL_DATABASE: 'digicash'
-      # MYSQL_USER: 'digicash'
-      # MYSQL_PASSWORD: 'digicash'
       MYSQL_ROOT_PASSWORD: 'pass'
       MYSQL_DATABASE: 'digicash'
       MYSQL_USER: 'user'
