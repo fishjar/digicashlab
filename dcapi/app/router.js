@@ -6,7 +6,7 @@
 module.exports = app => {
   const { router, controller, del } = app;
   router.get('/trades', controller.trade.trades);
-  router.get('/trades/:id', controller.trade.trade);
-  router.post('/trades', controller.trade.create);
-  router.del('/trades/:id', controller.trade.del);
+  // router.get('/trades/:id', controller.trade.trade);
+  // router.post('/trades', controller.trade.create);
+  // router.del('/trades/:id', controller.trade.del);
 };
