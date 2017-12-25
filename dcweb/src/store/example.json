@@ -1,0 +1,18 @@
+{
+  "trades": {
+    "data": {
+      "count": 1,
+      "items": []
+    },
+    "isFetching": false,
+    "params": {
+      "site": "",
+      "pair": "",
+      "order_by": "",
+      "order": "",
+      "offset": 0,
+      "limit": ""
+    },
+    "filter": {}
+  }
+}

@@ -1,12 +1,30 @@
 'use strict';
 
+// Model.findAll({
+//   where: {
+//     name: 'a project',
+//     attr1: {
+//       $gt: 50
+//     },
+//     $or: [
+//       {id: [1, 2, 3]},
+//       {
+//         $and: [
+//           {id: {gt: 10}},
+//           {id: {lt: 100}}
+//         ]
+//       }
+//     ]
+//   }
+// })
+
 const Service = require('egg').Service;
 
 class Trade extends Service {
   async list({ offset = 0, limit = 10, order_by = 'trade_id', order = 'DESC', pair, filter }={}) {
     const options = {
-      offset,
-      limit,
+      offset:+offset,
+      limit:+limit,
       attributes: [ 'id', 'site', 'pair', 'trade_id', 'date', 'timestamp', 'type', 'rate', 'amount', 'total', 'created_at', 'updated_at' ],
       order: [[ order_by, order.toUpperCase() ]],
       where: {}
