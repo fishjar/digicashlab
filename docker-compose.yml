@@ -1,41 +1,35 @@
 version: '3'
 services:
-  dcapi:
-    container_name: dcapi
-    build: ./dcapi
-    ports:
-      - "9011:7001"
-    # volumes:
-      # - ./dcapi:/usr/src/app
-      # - ./logs:/usr/src/app/logs
-    depends_on:
-      - db
-    command: bash -c "sleep 30 && NODE_ENV=production npm run migrate:up && EGG_SERVER_ENV=prod npm run docker"
+  # dcapi:
+  #   container_name: dcapi
+  #   build: ./dcapi
+  #   ports:
+  #     - "9011:7001"
+  #   # volumes:
+  #     # - ./dcapi:/usr/src/app
+  #     # - ./logs:/usr/src/app/logs
+  #   depends_on:
+  #     - db
+  #   command: bash -c "sleep 30 && NODE_ENV=production npm run migrate:up && EGG_SERVER_ENV=prod npm run docker"
 
   dcweb:
     container_name: dcweb
     build: ./dcweb
     ports:
       - "9013:5000"
-    # volumes:
-      # - ./dcapi:/usr/src/app
-      # - ./logs:/usr/src/app/logs
     depends_on:
       - dcapi
-    # links:
-    #   - dcapi
-    # command: bash -c "sleep 30 && NODE_ENV=production npm run migrate:up && EGG_SERVER_ENV=prod npm run docker"
 
-  db:
-    container_name: dcdb
-    image: mysql:latest
-    volumes:
-      - ./db_data:/var/lib/mysql
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: 'pass'
-      MYSQL_DATABASE: 'digicash'
-      MYSQL_USER: 'user'
-      MYSQL_PASSWORD: 'pass'
-    ports:
-      - "9012:3306"
+  # db:
+  #   container_name: dcdb
+  #   image: mysql:latest
+  #   volumes:
+  #     - ./db_data:/var/lib/mysql
+  #   restart: always
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: 'pass'
+  #     MYSQL_DATABASE: 'digicash'
+  #     MYSQL_USER: 'user'
+  #     MYSQL_PASSWORD: 'pass'
+  #   ports:
+  #     - "9012:3306"
