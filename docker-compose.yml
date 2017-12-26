@@ -12,6 +12,20 @@ services:
       - db
     command: bash -c "sleep 30 && NODE_ENV=production npm run migrate:up && EGG_SERVER_ENV=prod npm run docker"
 
+  dcweb:
+    container_name: dcweb
+    build: ./dcweb
+    ports:
+      - "9013:5000"
+    # volumes:
+      # - ./dcapi:/usr/src/app
+      # - ./logs:/usr/src/app/logs
+    depends_on:
+      - dcapi
+    # links:
+    #   - dcapi
+    # command: bash -c "sleep 30 && NODE_ENV=production npm run migrate:up && EGG_SERVER_ENV=prod npm run docker"
+
   db:
     container_name: dcdb
     image: mysql:latest

@@ -7,6 +7,7 @@ export const SET_PARAMS = 'SET_PARAMS'
 export const SET_FILTER = 'SET_FILTER'
 
 const API_HOST = 'http://localhost:9011';
+// const API_HOST = 'http://dcapi:7001';
 
 export const setParams = (params) => ({
   type: SET_PARAMS,
