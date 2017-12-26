@@ -17,8 +17,8 @@ services:
     build: ./dcweb
     ports:
       - "9013:5000"
-    depends_on:
-      - dcapi
+    # depends_on:
+    #   - dcapi
 
   # db:
   #   container_name: dcdb
