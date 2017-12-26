@@ -2,6 +2,7 @@ import fetch from 'isomorphic-fetch'
 
 export const REQUEST_STRADES = 'REQUEST_STRADES'
 export const RECEIVE_STRADES = 'RECEIVE_STRADES'
+export const FAILURE_STRADES = 'FAILURE_STRADES'
 export const SET_PARAMS = 'SET_PARAMS'
 export const SET_FILTER = 'SET_FILTER'
 
@@ -29,20 +30,43 @@ export const receiveTrades = (params, filter, data) => ({
   filter,
   data,
 })
+export const failureTrades = (errCode, errMsg) => ({
+  type: FAILURE_STRADES,
+  errCode,
+  errMsg,
+})
 
-export const fetchTrades = (params,filter) => async dispatch => {
+export const fetchTrades = (params, filter) => async dispatch => {
   dispatch(requestTrades(params, filter));
-
-  params.filter = encodeURIComponent(JSON.stringify(filter));
+  const { days } = filter;
+  const t = Date.now() - 3600 * 1000 * 24 * days;
+  // params.filter = encodeURIComponent(JSON.stringify({
+  //   timestamp: {
+  //     $gt: t
+  //   },
+  // }));
+  const kvs = Object.assign({},params,{
+    filter: encodeURIComponent(JSON.stringify({
+      timestamp: {
+        $gt: t
+      },
+    }))
+  })
   const url = new URL(`${API_HOST}/trades`);
-  Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
+  Object.keys(kvs).forEach(key => url.searchParams.append(key, kvs[key]));
 
-  return fetch(url,{
+  return fetch(url, {
     mode: 'cors',
   })
-    .then(response => response.json())
+    .then(response => {
+      console.log(response);
+      return response.json();
+    })
     .then(json => {
       console.log(json)
       return dispatch(receiveTrades(params, filter, json))
+    }).catch(err => {
+      console.log(err);
+      return dispatch(failureTrades(1, `${err}`))
     })
 }

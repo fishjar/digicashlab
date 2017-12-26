@@ -4,6 +4,8 @@
       "count": 1,
       "items": []
     },
+    "errCode": 0,
+    "errMsg": "",
     "isFetching": false,
     "params": {
       "site": "",
