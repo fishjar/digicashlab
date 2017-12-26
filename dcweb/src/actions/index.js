@@ -6,7 +6,7 @@ export const FAILURE_STRADES = 'FAILURE_STRADES'
 export const SET_PARAMS = 'SET_PARAMS'
 export const SET_FILTER = 'SET_FILTER'
 
-const API_HOST = 'http://localhost:7001';
+const API_HOST = 'http://localhost:9011';
 
 export const setParams = (params) => ({
   type: SET_PARAMS,
