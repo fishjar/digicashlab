@@ -1,14 +1,12 @@
 import fetch from 'isomorphic-fetch'
 
+import { API_HOST } from '../config'
+
 export const REQUEST_STRADES = 'REQUEST_STRADES'
 export const RECEIVE_STRADES = 'RECEIVE_STRADES'
 export const FAILURE_STRADES = 'FAILURE_STRADES'
 export const SET_PARAMS = 'SET_PARAMS'
 export const SET_FILTER = 'SET_FILTER'
-
-// const API_HOST = 'http://localhost:9011';
-// const API_HOST = 'http://dcapi:7001';
-const API_HOST = 'http://119.28.138.245:9011';
 
 export const setParams = (params) => ({
   type: SET_PARAMS,
@@ -47,7 +45,7 @@ export const fetchTrades = (params, filter) => async dispatch => {
   //     $gt: t
   //   },
   // }));
-  const kvs = Object.assign({},params,{
+  const kvs = Object.assign({}, params, {
     filter: encodeURIComponent(JSON.stringify({
       timestamp: {
         $gt: t

@@ -12,8 +12,7 @@ import {
 } from 'react-bootstrap';
 
 import { fetchTrades } from '../actions'
-
-
+import { API_HOST } from '../config'
 
 
 class Trades extends Component {
@@ -100,7 +99,7 @@ class Trades extends Component {
     //     <div className="tc">[{errCode}]: {errMsg}</div>
     //   )
     // }
-    const API_HOST = 'http://119.28.138.245:9011';
+    // const API_HOST = 'http://119.28.138.245:9011';
     // const API_HOST = 'http://127.0.0.1:7001';
     const titleLine = <div>
       {isFetching ? <p>loading...</p> : <p>trades <a href={`${API_HOST}/trades_csv`}>download</a></p>}
