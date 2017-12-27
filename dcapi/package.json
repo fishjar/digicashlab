@@ -8,6 +8,7 @@
     "egg-cors": "^2.0.0",
     "egg-scripts": "^2.1.0",
     "egg-sequelize": "^3.0.1",
+    "json2csv": "^3.11.5",
     "lodash": "^4.17.4",
     "mysql2": "^1.5.1",
     "pg": "^6.2.4",

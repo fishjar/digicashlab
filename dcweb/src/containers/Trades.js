@@ -52,7 +52,7 @@ class Trades extends Component {
     dispatch(fetchTrades(Object.assign(params, { order, offset }), filter));
   }
 
-  Prev = (e) => {
+  prevPage = (e) => {
     e.preventDefault();
     const { dispatch, params, filter, page } = this.props;
     if (page <= 1) {
@@ -62,7 +62,7 @@ class Trades extends Component {
     dispatch(fetchTrades(Object.assign(params, { offset }), filter));
   }
 
-  Next = (e) => {
+  nextPage = (e) => {
     e.preventDefault();
     const { dispatch, params, filter, page, pageAll } = this.props;
     if (page === pageAll) {
@@ -71,6 +71,10 @@ class Trades extends Component {
     const offset = page * params.limit;
     dispatch(fetchTrades(Object.assign(params, { offset }), filter));
   }
+
+  // downloadTrades = () => {
+  //   e.preventDefault();
+  // }
 
   render() {
     console.log(this.props);
@@ -96,9 +100,10 @@ class Trades extends Component {
     //     <div className="tc">[{errCode}]: {errMsg}</div>
     //   )
     // }
-
+    const API_HOST = 'http://119.28.138.245:9011';
+    // const API_HOST = 'http://127.0.0.1:7001';
     const titleLine = <div>
-      {isFetching ? <p>loading...</p> : <p>trades</p>}
+      {isFetching ? <p>loading...</p> : <p>trades <a href={`${API_HOST}/trades_csv`}>download</a></p>}
       {errCode !== 0 ? <p>[{errCode}]: {errMsg}</p> : <p>get {trades.count} items! page: {page}/{pageAll}</p>}
     </div>;
 
@@ -197,8 +202,8 @@ class Trades extends Component {
         </div>
         <div>
           <Pager>
-            <Pager.Item disabled={page === 1} previous href="#" onClick={this.Prev}>&larr; 上一页</Pager.Item>
-            <Pager.Item disabled={page === pageAll} next href="#" onClick={this.Next}>下一页 &rarr;</Pager.Item>
+            <Pager.Item disabled={page === 1} previous href="#" onClick={this.prevPage}>&larr; 上一页</Pager.Item>
+            <Pager.Item disabled={page === pageAll} next href="#" onClick={this.nextPage}>下一页 &rarr;</Pager.Item>
           </Pager>
         </div>
       </div >

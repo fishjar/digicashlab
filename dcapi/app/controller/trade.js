@@ -1,11 +1,24 @@
 'use strict';
 
+const json2csv = require('json2csv');
 const Controller = require('egg').Controller;
 
 class TradeController extends Controller {
   async trades() {
     const ctx = this.ctx;
     ctx.body = await ctx.service.trade.list(ctx.query);
+  }
+
+  async trades_csv() {
+    const ctx = this.ctx;
+    // ctx.set({
+    //   'Content-Type': 'application/vnd.ms-execl',
+    //   'Content-Disposition': "attachment;filename=trades.csv",
+    //   'Pragma': 'no-cache',
+    //   'Expires': 0
+    // });
+    ctx.attachment('trades.csv');
+    ctx.body = await ctx.service.trade.csv(ctx.query);
   }
 
   async trade() {
