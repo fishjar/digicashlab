@@ -5,11 +5,19 @@ services:
     build: ./dcapi
     ports:
       - "9011:7001"
-    # volumes:
+    volumes:
       # - ./dcapi:/usr/src/app
-      # - ./logs:/usr/src/app/logs
+      - ./logs:/usr/src/app/logs
     depends_on:
       - db
+    # deploy:
+    #   resources:
+    #     limits:
+    #       cpus: '0.25'
+    #       memory: 100M
+    #     reservations:
+    #       cpus: '0.25'
+    #       memory: 50M
     command: bash -c "sleep 30 && NODE_ENV=production npm run migrate:up && EGG_SERVER_ENV=prod npm run docker"
 
   dcweb:
@@ -17,8 +25,16 @@ services:
     build: ./dcweb
     ports:
       - "9013:5000"
-    # depends_on:
-    #   - dcapi
+    depends_on:
+      - dcapi
+    # deploy:
+    #   resources:
+    #     limits:
+    #       cpus: '0.25'
+    #       memory: 50M
+    #     reservations:
+    #       cpus: '0.25'
+    #       memory: 25M
 
   db:
     container_name: dcdb
@@ -33,3 +49,11 @@ services:
       MYSQL_PASSWORD: 'pass'
     ports:
       - "9012:3306"
+    # deploy:
+    #   resources:
+    #     limits:
+    #       cpus: '0.25'
+    #       memory: 100M
+    #     reservations:
+    #       cpus: '0.25'
+    #       memory: 50M
