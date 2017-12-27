@@ -11,11 +11,13 @@ WORKDIR /frontend
 COPY . /frontend
 
 # RUN npm install --production --registry=https://registry.npm.taobao.org
-RUN npm install --production
-
-CMD npm install -g serve && \
+RUN npm install --production && \
 	npm run build && \
-	serve -s -p 5000 build
+	npm install -g serve
+
+EXPOSE 5000
+
+CMD serve -s -p 5000 build
 
 # CMD if [ ${APP_ENV} = production ]; \
 # 	then \
@@ -27,4 +29,3 @@ CMD npm install -g serve && \
 # 	npm run start; \
 # 	fi
 
-EXPOSE 5000
