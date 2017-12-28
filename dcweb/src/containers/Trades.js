@@ -164,7 +164,11 @@ class Trades extends Component {
                 }
               </DropdownButton>
             </ButtonGroup>
-            <Checkbox checked={params.order === 'DESC'} onChange={this.selectOrder}>倒序</Checkbox>
+
+            <ButtonGroup>
+              <Checkbox checked={params.order === 'DESC'} onChange={this.selectOrder} inline>倒序</Checkbox>
+            </ButtonGroup>
+
           </ButtonToolbar>
         </div>
         <div>
