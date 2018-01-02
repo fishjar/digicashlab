@@ -3,7 +3,7 @@ services:
   dcapi:
     # container_name: dcapi
     # build: ./dcapi
-    image: dcapi
+    image: digicashlab_dcapi
     ports:
       - "9011:7001"
     networks:
@@ -28,7 +28,7 @@ services:
 
   dcweb:
     # container_name: dcweb
-    image: dcweb
+    image: digicashlab_dcweb
     # build: ./dcweb
     ports:
       - "9013:5000"
