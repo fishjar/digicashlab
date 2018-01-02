@@ -18,10 +18,12 @@ services:
       resources:
         limits:
           cpus: '0.25'
-          memory: 200M
+          memory: 100M
         # reservations:
         #   cpus: '0.25'
         #   memory: 50M
+      restart_policy:
+        condition: on-failure
     command: bash -c "sleep 30 && NODE_ENV=production npm run migrate:up && EGG_SERVER_ENV=prod npm run docker"
 
   dcweb:
@@ -43,7 +45,8 @@ services:
         # reservations:
         #   cpus: '0.25'
         #   memory: 25M
-
+      restart_policy:
+        condition: on-failure
   db:
     # container_name: dcdb
     image: mysql:latest
@@ -65,9 +68,11 @@ services:
       resources:
         limits:
           cpus: '0.25'
-          memory: 400M
+          memory: 300M
         # reservations:
         #   cpus: '0.25'
         #   memory: 50M
+      restart_policy:
+        condition: on-failure
 networks:
   webnet:
