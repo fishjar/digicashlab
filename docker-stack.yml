@@ -19,9 +19,9 @@ services:
         limits:
           cpus: '0.25'
           memory: 150M
-        reservations:
-          cpus: '0.25'
-          memory: 50M
+        # reservations:
+        #   cpus: '0.25'
+        #   memory: 50M
       restart_policy:
         condition: on-failure
     command: bash -c "sleep 30 && NODE_ENV=production npm run migrate:up && EGG_SERVER_ENV=prod npm run docker"
@@ -42,9 +42,9 @@ services:
         limits:
           cpus: '0.25'
           memory: 50M
-        reservations:
-          cpus: '0.25'
-          memory: 25M
+        # reservations:
+        #   cpus: '0.25'
+        #   memory: 25M
       restart_policy:
         condition: on-failure
   db:
@@ -68,11 +68,11 @@ services:
       resources:
         limits:
           cpus: '0.25'
-          memory: 200M
-        reservations:
-          cpus: '0.25'
-          memory: 100M
-      restart_policy:
-        condition: on-failure
+          memory: 300M
+        # reservations:
+        #   cpus: '0.25'
+        #   memory: 100M
+      # restart_policy:
+      #   condition: on-failure
 networks:
   webnet:
