@@ -13,7 +13,7 @@ services:
       - /data/code/github/fishjar/digicashlab/logs:/usr/src/app/logs
     depends_on:
       - db
-    # deploy:
+    deploy:
     #   # replicas: 1
     #   # resources:
     #   #   limits:
@@ -22,8 +22,8 @@ services:
     #     # reservations:
     #     #   cpus: '0.25'
     #     #   memory: 50M
-    #   restart_policy:
-    #     condition: on-failure
+      restart_policy:
+        condition: on-failure
     command: bash -c "sleep 30 && NODE_ENV=production npm run migrate:up && EGG_SERVER_ENV=prod npm run docker"
 
   dcweb:
@@ -36,7 +36,7 @@ services:
       - webnet
     depends_on:
       - dcapi
-    # deploy:
+    deploy:
     #   # replicas: 1
     #   # resources:
     #   #   limits:
@@ -45,14 +45,13 @@ services:
     #     # reservations:
     #     #   cpus: '0.25'
     #     #   memory: 25M
-    #   restart_policy:
-    #     condition: on-failure
+      restart_policy:
+        condition: on-failure
   db:
     # container_name: dcdb
     image: mysql:latest
     volumes:
       - /data/code/github/fishjar/digicashlab/db_data:/var/lib/mysql
-    restart: always
     environment:
       MYSQL_ROOT_PASSWORD: 'pass'
       MYSQL_DATABASE: 'digicash'
