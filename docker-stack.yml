@@ -10,7 +10,7 @@ services:
       - webnet
     volumes:
       # - ./dcapi:/usr/src/app
-      - ./logs:/usr/src/app/logs
+      - /data/code/github/fishjar/digicashlab/logs:/usr/src/app/logs
     depends_on:
       - db
     deploy:
@@ -48,7 +48,7 @@ services:
     # container_name: dcdb
     image: mysql:latest
     volumes:
-      - ./data:/var/lib/mysql
+      - /data/code/github/fishjar/digicashlab/db_data:/var/lib/mysql
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: 'pass'
