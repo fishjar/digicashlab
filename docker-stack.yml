@@ -18,10 +18,10 @@ services:
       resources:
         limits:
           cpus: '0.25'
-          memory: 100M
-        # reservations:
-        #   cpus: '0.25'
-        #   memory: 50M
+          memory: 150M
+        reservations:
+          cpus: '0.25'
+          memory: 50M
     command: bash -c "sleep 30 && NODE_ENV=production npm run migrate:up && EGG_SERVER_ENV=prod npm run docker"
 
   dcweb:
@@ -65,9 +65,9 @@ services:
       resources:
         limits:
           cpus: '0.25'
-          memory: 100M
-        # reservations:
-        #   cpus: '0.25'
-        #   memory: 50M
+          memory: 150M
+        reservations:
+          cpus: '0.25'
+          memory: 50M
 networks:
   webnet:
