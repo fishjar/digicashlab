@@ -1,0 +1,73 @@
+version: '3'
+services:
+  dcapi:
+    # container_name: dcapi
+    # build: ./dcapi
+    image: dcapi
+    ports:
+      - "9011:7001"
+    networks:
+      - webnet
+    volumes:
+      # - ./dcapi:/usr/src/app
+      - ./logs:/usr/src/app/logs
+    depends_on:
+      - db
+    deploy:
+      # replicas: 1
+      resources:
+        limits:
+          cpus: '0.25'
+          memory: 100M
+        # reservations:
+        #   cpus: '0.25'
+        #   memory: 50M
+    command: bash -c "sleep 30 && NODE_ENV=production npm run migrate:up && EGG_SERVER_ENV=prod npm run docker"
+
+  dcweb:
+    # container_name: dcweb
+    image: dcweb
+    # build: ./dcweb
+    ports:
+      - "9013:5000"
+    networks:
+      - webnet
+    depends_on:
+      - dcapi
+    deploy:
+      # replicas: 1
+      resources:
+        limits:
+          cpus: '0.25'
+          memory: 50M
+        # reservations:
+        #   cpus: '0.25'
+        #   memory: 25M
+
+  db:
+    # container_name: dcdb
+    image: mysql:latest
+    volumes:
+      - ./db_data:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 'pass'
+      MYSQL_DATABASE: 'digicash'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'pass'
+    ports:
+      - "9012:3306"
+    networks:
+      - webnet
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+      resources:
+        limits:
+          cpus: '0.25'
+          memory: 100M
+        # reservations:
+        #   cpus: '0.25'
+        #   memory: 50M
+networks:
+  webnet:
