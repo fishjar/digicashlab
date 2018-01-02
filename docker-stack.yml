@@ -18,10 +18,10 @@ services:
       resources:
         limits:
           cpus: '0.25'
-          memory: 150M
-        reservations:
-          cpus: '0.25'
-          memory: 50M
+          memory: 100M
+        # reservations:
+        #   cpus: '0.25'
+        #   memory: 50M
     command: bash -c "sleep 30 && NODE_ENV=production npm run migrate:up && EGG_SERVER_ENV=prod npm run docker"
 
   dcweb:
@@ -48,7 +48,7 @@ services:
     # container_name: dcdb
     image: mysql:latest
     volumes:
-      - ./db_data:/var/lib/mysql
+      - ./data:/var/lib/mysql
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: 'pass'
@@ -65,9 +65,9 @@ services:
       resources:
         limits:
           cpus: '0.25'
-          memory: 150M
-        reservations:
-          cpus: '0.25'
-          memory: 50M
+          memory: 100M
+        # reservations:
+        #   cpus: '0.25'
+        #   memory: 50M
 networks:
   webnet:
