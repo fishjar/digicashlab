@@ -18,7 +18,8 @@ $ open http://localhost:7001/
 
 ### Deploy
 
-```bash
+```sh
+# egg-scripts start --port=7001 --daemon --title=egg-server-showcase
 $ npm start
 $ npm stop
 ```

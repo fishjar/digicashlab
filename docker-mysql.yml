@@ -1,0 +1,15 @@
+version: '3'
+services:
+  db:
+    container_name: dcdb
+    image: mysql:latest
+    volumes:
+      - ./db_data:/var/lib/mysql
+    # restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 'pass'
+      MYSQL_DATABASE: 'digicash'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'pass'
+    ports:
+      - "9012:3306"

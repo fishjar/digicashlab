@@ -1,10 +1,19 @@
 'use strict';
 
+// exports.sequelize = {
+//   dialect: 'mysql',
+//   database: 'digicash',
+//   host: 'db',
+//   port: '3306',
+//   username: 'user',
+//   password: 'pass'
+// };
+
 exports.sequelize = {
   dialect: 'mysql',
   database: 'digicash',
-  host: 'db',
+  host: 'localhost',
   port: '3306',
-  username: 'user',
-  password: 'pass'
+  username: 'digicash',
+  password: 'digicash'
 };
