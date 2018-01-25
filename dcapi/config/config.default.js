@@ -7,15 +7,16 @@ module.exports = appInfo => {
   config.keys = appInfo.name + '_1513754579243_7269';
 
   // add your config here
-  config.middleware = [];
+  // config.middleware = [];
+  config.middleware = ['errors'];
 
   config.sequelize = {
     dialect: 'mysql', // support: mysql, mariadb, postgres, mssql
     database: 'digicash',
     host: 'localhost',
-    port: '9012',
-    username: 'user',
-    password: 'pass'
+    port: '3306',
+    username: 'root',
+    password: '123456'
   };
 
   config.security = {

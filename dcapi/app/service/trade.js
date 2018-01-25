@@ -32,10 +32,10 @@ class Trade extends Service {
       where: {}
     };
     if (pair) {
-      options.where = Object.assign(options.where, { pair });
+      Object.assign(options.where, { pair });
     }
     if (filter) {
-      options.where = Object.assign(options.where, JSON.parse(decodeURIComponent(filter)));
+      Object.assign(options.where, JSON.parse(decodeURIComponent(filter)));
     }
     return this.ctx.model.Trade.findAndCountAll(options);
   }
