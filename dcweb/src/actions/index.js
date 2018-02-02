@@ -55,7 +55,7 @@ export const fetchTrades = (params, filter) => async dispatch => {
   const url = new URL(`${API_HOST}/trades`);
   Object.keys(kvs).forEach(key => url.searchParams.append(key, kvs[key]));
 
-  return fetch(url, {
+  return fetch(url.href, {
     mode: 'cors',
   })
     .then(response => {
